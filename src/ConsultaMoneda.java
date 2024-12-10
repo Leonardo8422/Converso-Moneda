@@ -10,7 +10,7 @@ public class ConsultaMoneda {
 
 Moneda buscarMoneda(String tipoDeMoneda){
 
-    URI direccion = URI.create("https://v6.exchangerate-api.com/v6/72ee39a1a40a467d476da851/latest/USD");
+    URI direccion = URI.create("https://v6.exchangerate-api.com/v6/72ee39a1a40a467d476da851/latest/"+tipoDeMoneda);
 
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
@@ -20,9 +20,7 @@ Moneda buscarMoneda(String tipoDeMoneda){
     try {
         response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
-    } catch (IOException e) {
-        throw new RuntimeException(e);
-    } catch (InterruptedException e) {
+    } catch (IOException | InterruptedException e) {
         throw new RuntimeException(e);
     }
 
