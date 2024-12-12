@@ -1,4 +1,5 @@
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.Map;
 
 public class ConvercionDeMonedas {
@@ -6,14 +7,15 @@ public class ConvercionDeMonedas {
     public  void cambioMoneda(double cantidad,
                               String base,
                               String conversor,
+                              //Date fecha,
                               Map<String,String> moneda){
-
+        LocalDate fecha = LocalDate.now();
         DecimalFormat formatoDecimal = new DecimalFormat("#.######");
         moneda.forEach((key, value)->{
             if (key.equals(conversor)){
                 double tasaDeConvercion =Double.parseDouble(value);
                 double resultado = tasaDeConvercion * cantidad;
-                System.out.println("El Valor" + cantidad + "[" + base + "Equivale al importe total de = " + formatoDecimal.format(resultado) + "[" + conversor + "]");
+                System.out.println("Fecha: " + fecha + " Valor ingresado: " + cantidad + " [" + base + "] Se ajusta al monto global de = " + formatoDecimal.format(resultado) + " [" + conversor + "]");
             }
         });
     }
